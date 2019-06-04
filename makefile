@@ -1,6 +1,6 @@
-TARGETS = escape.cpp
-INCLUDES =
-LIBS = -lsfml-system -lsfml-window 
+TARGETS = input.cpp text.cpp intro.cpp main.cpp
+INCLUDES = -I*.hpp
+LIBS = -lsfml-system -lsfml-window -lsfml-graphics
 
 all: $(TARGETS)
 	c++ -o escape $(INCLUDES) $(LIBS) $(TARGETS)

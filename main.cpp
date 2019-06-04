@@ -1,13 +1,17 @@
+#include "intro.hpp"
+//#include "game.hpp"
+#include "text.hpp"
 #include <SFML/Window.hpp>
-#include <iostream>
 #include <vector>
-using namespace std;
 
-vector<int> maze;
+std::vector<int> maze;
 
 int main()
 {
-	sf::Window window(sf::VideoMode(800, 600), "Escape!");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Escape!");
+	Writer writer(&window);
+
+	show_intro(window, writer);
 
 	while (window.isOpen())
 	{
@@ -18,6 +22,8 @@ int main()
 				window.close();
 			}
 		}
+
+		window.display();
 	}
 
 	return 0;
