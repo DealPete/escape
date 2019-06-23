@@ -1,9 +1,16 @@
-TARGETS = input.cpp text.cpp intro.cpp main.cpp
-INCLUDES = -I*.hpp
+SOURCE = *.cpp
 LIBS = -lsfml-system -lsfml-window -lsfml-graphics
 
-all: $(TARGETS)
-	c++ -o escape $(INCLUDES) $(LIBS) $(TARGETS)
+all: source images/pass.png
+
+images/pass.png: images/pass.svg
+	convert -size 100x100 -background none images/pass.svg images/pass.png
+
+source:
+	c++ -o escape $(LIBS) $(SOURCE) -std=c++11
+
+debug:
+	c++ -o escape $(LIBS) $(SOURCE) -std=c++11 -g
 
 clean:
 	$(RM) escape

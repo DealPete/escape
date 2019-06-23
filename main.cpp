@@ -1,17 +1,17 @@
 #include "intro.hpp"
-//#include "game.hpp"
-#include "text.hpp"
+#include "draw.hpp"
+#include "state.hpp"
+#include "writer.hpp"
+#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <vector>
 
-std::vector<int> maze;
+State state;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Escape!");
-	Writer writer(&window);
-
-	show_intro(window, writer);
+	sf::RenderWindow window(sf::VideoMode(2048, 1080), "Escape!");
+	Painter::init(window);
+	Writer::init(window);
 
 	while (window.isOpen())
 	{
@@ -21,8 +21,18 @@ int main()
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+
+			if (event.type == sf::Event::KeyPressed) {
+				state.subscreen += 1;
+
+				if (state.subscreen == 2) {
+					state.screen = Screen::GAME;
+				}
+			}
 		}
 
+		window.clear();
+		draw(window, state);
 		window.display();
 	}
 
