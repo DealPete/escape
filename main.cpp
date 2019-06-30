@@ -9,17 +9,21 @@ State state;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(2048, 1080), "Escape!");
-	Painter::init(window);
-	Writer::init(window);
+	auto main_mode = sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+	auto map_mode = sf::VideoMode(MAP_WINDOW_WIDTH, MAP_WINDOW_HEIGHT);
 
-	while (window.isOpen())
+	sf::RenderWindow main_window(main_mode, "Escape!");
+	sf::RenderWindow map_window;
+	Painter::init(main_window);
+	Writer::init(main_window);
+
+	while (main_window.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (main_window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
-				window.close();
+				main_window.close();
 			}
 
 			if (event.type == sf::Event::KeyPressed) {
@@ -27,13 +31,21 @@ int main()
 
 				if (state.subscreen == 2) {
 					state.screen = Screen::GAME;
+					state.map_open = true;
+					map_window.create(map_mode, "Map");
 				}
 			}
 		}
 
-		window.clear();
-		draw(window, state);
-		window.display();
+		if (state.map_open) {
+			map_window.clear();
+			draw_map(map_window, state.maze);
+			map_window.display();
+		}
+
+		main_window.clear();
+		draw(main_window, state);
+		main_window.display();
 	}
 
 	return 0;

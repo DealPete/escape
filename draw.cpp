@@ -1,5 +1,6 @@
 #include "draw.hpp"
 #include "intro.hpp"
+#include "maze.hpp"
 #include "state.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -7,6 +8,29 @@
 void draw(sf::RenderWindow &window, State state) {
 	if (state.screen == Screen::INTRO) {
 		show_intro(window, state.subscreen);
+	}
+}
+
+void draw_map(sf::RenderWindow &window, Maze maze) {
+	int cell_width = MAP_WINDOW_WIDTH / MAZE_WIDTH;
+	int cell_height = MAP_WINDOW_HEIGHT / MAZE_HEIGHT;
+	sf::RectangleShape rect(sf::Vector2f(cell_width, cell_height));
+	rect.setFillColor(sf::Color(255, 255, 0));
+
+	for (int x = 0; x < MAZE_WIDTH; x++ ) {
+		for (int y = 0; y < MAZE_HEIGHT; y++ ) {
+			if (maze.get_cell(x, y) == Cell::WALL) {
+				rect.setPosition(x * cell_width, y * cell_height);
+				window.draw(rect);
+			}
+
+			if (maze.get_cell(x, y) == Cell::EXIT) {
+				rect.setFillColor(sf::Color(0, 128, 0));
+				rect.setPosition(x * cell_width, y * cell_height);
+				window.draw(rect);
+				rect.setFillColor(sf::Color(255, 255, 0));
+			}
+		}
 	}
 }
 
