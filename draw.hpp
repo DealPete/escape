@@ -5,13 +5,27 @@
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <map>
-#include <vector>
 using namespace std;
+
+const sf::Color DARK_GREEN = sf::Color(0, 163, 96);   // COLOR = 4
+const sf::Color BROWN = sf::Color(96, 114, 3);        // COLOR = 8
+const sf::Color LIGHT_GREEN = sf::Color(20, 245, 60); // COLOR = 12
+const sf::Color WHITE = sf::Color(255, 255, 255);     // COLOR = 15
 
 const int MAIN_WINDOW_WIDTH = 2048;
 const int MAIN_WINDOW_HEIGHT = 1080;
 const int MAP_WINDOW_WIDTH = 1000;
 const int MAP_WINDOW_HEIGHT = 520;
+
+class Architect {
+private:
+	static sf::RenderWindow *window;
+
+public:
+	static void init(sf::RenderWindow &main_window);
+	static void draw_triangle(sf::Color color, sf::Vector2f, sf::Vector2f, sf::Vector2f);
+	static void draw_square(sf::Color color, sf::Vector2f top_left, int width, int height);
+};
 
 class Painter {
 private:

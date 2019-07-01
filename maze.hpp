@@ -19,5 +19,6 @@ public:
 		return maze[x][y];
 	}
 
+	void draw();
 	Maze();
 };

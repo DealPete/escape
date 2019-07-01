@@ -1,5 +1,7 @@
 #include <random>
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include "draw.hpp"
 #include "maze.hpp"
 
 int directions[4][2] = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
@@ -110,4 +112,36 @@ Maze::Maze() {
 	}
 
 	maze[1][0] = Cell::EXIT;
+}
+
+void Maze::draw() {
+	sf::Vector2f center(MAIN_WINDOW_WIDTH / 2, MAIN_WINDOW_HEIGHT / 2);
+
+	Architect::draw_triangle(
+		WHITE,
+		sf::Vector2f(0, 0),
+		sf::Vector2f(MAIN_WINDOW_WIDTH, 0),
+		center
+	);
+	
+	Architect::draw_triangle(
+		LIGHT_GREEN,
+		sf::Vector2f(0, 0),
+		sf::Vector2f(0, MAIN_WINDOW_HEIGHT),
+		center
+	);
+
+	Architect::draw_triangle(
+		LIGHT_GREEN,
+		sf::Vector2f(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT),
+		sf::Vector2f(MAIN_WINDOW_WIDTH, 0),
+		center
+	);
+
+	Architect::draw_triangle(
+		DARK_GREEN,
+		sf::Vector2f(0, MAIN_WINDOW_HEIGHT),
+		sf::Vector2f(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT),
+		center
+	);
 }

@@ -12,8 +12,13 @@ int main()
 	auto main_mode = sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
 	auto map_mode = sf::VideoMode(MAP_WINDOW_WIDTH, MAP_WINDOW_HEIGHT);
 
+	
 	sf::RenderWindow main_window(main_mode, "Escape!");
 	sf::RenderWindow map_window;
+	main_window.setVerticalSyncEnabled(true);
+	map_window.setVerticalSyncEnabled(true);
+
+	Architect::init(main_window);
 	Painter::init(main_window);
 	Writer::init(main_window);
 

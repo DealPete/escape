@@ -8,6 +8,8 @@
 void draw(sf::RenderWindow &window, State state) {
 	if (state.screen == Screen::INTRO) {
 		show_intro(window, state.subscreen);
+	} else {
+		state.maze.draw();
 	}
 }
 
@@ -34,7 +36,29 @@ void draw_map(sf::RenderWindow &window, Maze maze) {
 	}
 }
 
+void Architect::init(sf::RenderWindow &main_window) {
+	window = &main_window;
+}
+
+void Architect::draw_triangle(sf::Color color, sf::Vector2f vertex1, sf::Vector2f vertex2, sf::Vector2f vertex3) {
+	sf::ConvexShape triangle;
+	triangle.setPointCount(3);
+	triangle.setPoint(0, vertex1);
+	triangle.setPoint(1, vertex2);
+	triangle.setPoint(2, vertex3);
+	triangle.setFillColor(color);
+	window->draw(triangle);
+}
+
+void Architect::draw_square(sf::Color color, sf::Vector2f top_left, int width, int height) {
+	sf::RectangleShape rectangle(sf::Vector2f(width, height));
+	rectangle.setPosition(top_left);
+	rectangle.setFillColor(color);
+	window->draw(rectangle);
+}
+
 sf::RenderWindow *Painter::window;
+sf::RenderWindow *Architect::window;
 std::map<std::string, sf::Sprite*> Painter::image_map;
 
 void Painter::draw(int x, int y) {
