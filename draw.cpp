@@ -9,7 +9,7 @@ void draw(sf::RenderWindow &window, State state) {
 	if (state.screen == Screen::INTRO) {
 		show_intro(window, state.subscreen);
 	} else {
-		state.maze.draw();
+		state.maze.draw(state.player_x, state.player_y, state.direction);
 	}
 }
 
@@ -50,7 +50,7 @@ void Architect::draw_triangle(sf::Color color, sf::Vector2f vertex1, sf::Vector2
 	window->draw(triangle);
 }
 
-void Architect::draw_square(sf::Color color, sf::Vector2f top_left, int width, int height) {
+void Architect::draw_rectangle(sf::Color color, sf::Vector2f top_left, int width, int height) {
 	sf::RectangleShape rectangle(sf::Vector2f(width, height));
 	rectangle.setPosition(top_left);
 	rectangle.setFillColor(color);

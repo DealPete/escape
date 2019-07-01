@@ -16,6 +16,8 @@ const int MAIN_WINDOW_WIDTH = 2048;
 const int MAIN_WINDOW_HEIGHT = 1080;
 const int MAP_WINDOW_WIDTH = 1000;
 const int MAP_WINDOW_HEIGHT = 520;
+const int MAZE_VIEW_WIDTH = MAIN_WINDOW_WIDTH;
+const int MAZE_VIEW_HEIGHT = MAIN_WINDOW_HEIGHT - 200;
 
 class Architect {
 private:
@@ -24,7 +26,7 @@ private:
 public:
 	static void init(sf::RenderWindow &main_window);
 	static void draw_triangle(sf::Color color, sf::Vector2f, sf::Vector2f, sf::Vector2f);
-	static void draw_square(sf::Color color, sf::Vector2f top_left, int width, int height);
+	static void draw_rectangle(sf::Color color, sf::Vector2f top_left, int width, int height);
 };
 
 class Painter {

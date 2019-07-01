@@ -32,12 +32,17 @@ int main()
 			}
 
 			if (event.type == sf::Event::KeyPressed) {
-				state.subscreen += 1;
+				if (state.screen == Screen::INTRO) {
+					state.subscreen += 1;
 
-				if (state.subscreen == 2) {
-					state.screen = Screen::GAME;
-					state.map_open = true;
-					map_window.create(map_mode, "Map");
+					if (state.subscreen == 2) {
+						state.screen = Screen::GAME;
+						state.map_open = true;
+						map_window.create(map_mode, "Map");
+					}
+				}
+				else {
+					state.move_player(event.key);
 				}
 			}
 		}
