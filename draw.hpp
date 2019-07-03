@@ -26,7 +26,7 @@ private:
 public:
 	static void init(sf::RenderWindow &main_window);
 	static void draw_triangle(sf::Color color, sf::Vector2f, sf::Vector2f, sf::Vector2f);
-	static void draw_rectangle(sf::Color color, sf::Vector2f top_left, int width, int height);
+	static void draw_rectangle(sf::Color color, sf::Vector2f top_left, float width, float height);
 };
 
 class Painter {

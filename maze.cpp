@@ -114,7 +114,7 @@ Maze::Maze() {
 }
 
 void Maze::draw(int x, int y, int direction) {
-	sf::Vector2f center(MAZE_VIEW_WIDTH / 2, MAZE_VIEW_HEIGHT / 2);
+	sf::Vector2f center(MAZE_VIEW_WIDTH / 2.f, MAZE_VIEW_HEIGHT / 2.f);
 
 	Architect::draw_triangle(
 		WHITE,
@@ -159,42 +159,42 @@ void Maze::draw(int x, int y, int direction) {
 			Architect::draw_rectangle(
 				BROWN,
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				),
-				MAZE_VIEW_WIDTH / ((depth + 1) * (depth + 2) * 2),
-				MAZE_VIEW_HEIGHT / (depth + 2)
+				MAZE_VIEW_WIDTH / ((depth + 1.f) * (depth + 2.f) * 2.f),
+				MAZE_VIEW_HEIGHT / (depth + 2.f)
 			);
 
 			Architect::draw_triangle(
 				WHITE,
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT * depth/(2 * (depth + 1))
+					MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT * depth/(2.f * (depth + 1.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * (depth + 1)/(2 * (depth + 2)),
-					MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH * (depth + 1.f)/(2.f * (depth + 2.f)),
+					MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				)
 			);
 
 			Architect::draw_triangle(
 				DARK_GREEN,
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * depth/(2 * (depth + 1))
+					MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * depth/(2.f * (depth + 1.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * (depth + 1)/(2 * (depth + 2)),
-					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH * (depth + 1.f)/(2.f * (depth + 2.f)),
+					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				)
 			);
 		}
@@ -203,42 +203,42 @@ void Maze::draw(int x, int y, int direction) {
 			Architect::draw_rectangle(
 				BROWN,
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH * (depth + 3)/(2 * (depth + 2)),
-					MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH * (depth + 3.f)/(2.f * (depth + 2.f)),
+					MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				),
-				MAZE_VIEW_WIDTH / ((depth + 1) * (depth + 2) * 2),
-				MAZE_VIEW_HEIGHT / (depth + 2)
+				MAZE_VIEW_WIDTH / ((depth + 1.f) * (depth + 2.f) * 2.f),
+				MAZE_VIEW_HEIGHT / (depth + 2.f)
 			);
 
 			Architect::draw_triangle(
 				WHITE,
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT * depth/(2 * (depth + 1))
+					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT * depth/(2.f * (depth + 1.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * (depth + 1)/(2 * (depth + 2)),
-					MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * (depth + 1.f)/(2.f * (depth + 2.f)),
+					MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				)
 			);
 
 			Architect::draw_triangle(
 				DARK_GREEN,
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * depth/(2 * (depth + 1))
+					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * depth/(2.f * (depth + 1.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * (depth + 1)/(2 * (depth + 2)),
-					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * (depth + 1.f)/(2.f * (depth + 2.f)),
+					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				),
 				sf::Vector2f(
-					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1)/(2 * (depth + 2))
+					MAZE_VIEW_WIDTH - MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+					MAZE_VIEW_HEIGHT - MAZE_VIEW_HEIGHT * (depth + 1.f)/(2.f * (depth + 2.f))
 				)
 			);
 		}
@@ -255,10 +255,10 @@ void Maze::draw(int x, int y, int direction) {
 	Architect::draw_rectangle(
 		BROWN,
 		sf::Vector2f(
-			MAZE_VIEW_WIDTH * depth/(2 * (depth + 1)),
-			MAZE_VIEW_HEIGHT * depth/(2 * (depth + 1))
+			MAZE_VIEW_WIDTH * depth/(2.f * (depth + 1.f)),
+			MAZE_VIEW_HEIGHT * depth/(2.f * (depth + 1.f))
 		),
-		MAZE_VIEW_WIDTH/(depth + 1),
-		MAZE_VIEW_HEIGHT/(depth + 1)
+		MAZE_VIEW_WIDTH/(depth + 1.f),
+		MAZE_VIEW_HEIGHT/(depth + 1.f)
 	);
 }
