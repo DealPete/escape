@@ -1,5 +1,7 @@
 #include "intro.hpp"
 #include "draw.hpp"
+#include "men.hpp"
+#include "random.hpp"
 #include "state.hpp"
 #include "writer.hpp"
 #include <SFML/Graphics.hpp>
@@ -11,7 +13,6 @@ int main()
 {
 	auto main_mode = sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
 	auto map_mode = sf::VideoMode(MAP_WINDOW_WIDTH, MAP_WINDOW_HEIGHT);
-
 	
 	sf::RenderWindow main_window(main_mode, "Escape!");
 	sf::RenderWindow map_window;
@@ -21,6 +22,8 @@ int main()
 	Architect::init(main_window);
 	Painter::init(main_window);
 	Writer::init(main_window);
+
+	state.init();
 
 	while (main_window.isOpen())
 	{
@@ -36,14 +39,27 @@ int main()
 					state.subscreen += 1;
 
 					if (state.subscreen == 2) {
-						state.screen = Screen::GAME;
-						state.map_open = true;
-						map_window.create(map_mode, "Map");
+						state.screen = Screen::MAZE;
+						state.subscreen = 0;
+						//state.map_open = true;
+						//map_window.create(map_mode, "Map");
 					}
 				}
-				else {
-					state.move_player(event.key);
+				else if (state.screen == Screen::MAZE) {
+					if (state.move_player(event.key)) {
+						if (rnd(1, 10) == 1) {
+							state.screen = Screen::MAN;
+							encounter_man(state);
+						}
+					}
 				}
+			}
+		}
+
+		while (map_window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed) {
+				map_window.close();
 			}
 		}
 

@@ -4,12 +4,19 @@
 #include "state.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <iostream>
 
 void draw(sf::RenderWindow &window, State state) {
 	if (state.screen == Screen::INTRO) {
 		show_intro(window, state.subscreen);
 	} else {
 		state.maze.draw(state.player_x, state.player_y, state.direction);
+		
+		if (state.screen == Screen::MAN) {
+			Painter man("red-hat.png");
+			int man_x = (MAZE_VIEW_WIDTH - MAN_WIDTH) / 2;
+			man.draw(man_x, MAZE_VIEW_HEIGHT - MAN_HEIGHT);
+		}
 	}
 }
 
@@ -71,14 +78,21 @@ void Painter::init(sf::RenderWindow &main_window) {
 	sf::Sprite *sprite;
 
 	window = &main_window;
-	string images[1] = { "pass.png" };
+	std::string images[5] =
+	{
+		"pass.png",
+		"green-hat.png",
+		"red-hat.png",
+		"dark-blue-hat.png",
+		"med-blue-hat.png",
+	};
 
-	for (const string &image : images) {
+	for (const std::string &image : images) {
 		texture = new sf::Texture;
 		sprite = new sf::Sprite;
 
 		if (!texture->loadFromFile("images/" + image)) {
-			cout << "Couldn't load file " << image << ".";
+			std::cout << "Couldn't load file " << image << ".\n";
 			exit(1);
 		}
 

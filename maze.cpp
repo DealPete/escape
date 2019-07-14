@@ -1,5 +1,5 @@
-#include <random>
 #include <SFML/Graphics.hpp>
+#include "random.hpp"
 #include "draw.hpp"
 #include "maze.hpp"
 
@@ -9,13 +9,7 @@ bool on_map(int x, int y) {
 	return (x >= 1 && x < MAZE_WIDTH - 1 && y >= 1 && y <= MAZE_HEIGHT - 2);
 }
 
-Maze::Maze() {
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> rnd2_distribution(0, 1);
-	std::uniform_int_distribution<int> rnd4_distribution(0, 3);
-	auto rnd2 = std::bind ( rnd2_distribution, generator );
-	auto rnd4 = std::bind ( rnd4_distribution, generator );
-
+void Maze::init() {
 	bool carving_maze = true, dir_chosen = false;
 	int direction;
 	int x = 1, y = 1;
@@ -24,7 +18,7 @@ Maze::Maze() {
 		maze[x][y] = Cell::EMPTY;
 
 		if (!dir_chosen) {
-			direction = rnd4();
+			direction = rnd(0, 3);
 		}
 
 		dir_chosen = false;
@@ -103,11 +97,11 @@ Maze::Maze() {
 	}
 
 	for (int x = 1; x < MAZE_WIDTH - 2; x += 2) {
-		if (rnd2() == 1) maze[x][MAZE_HEIGHT - 2] = Cell::EMPTY;
+		if (rnd(0, 1) == 1) maze[x][MAZE_HEIGHT - 2] = Cell::EMPTY;
 	}
 
 	for (int y = 1; y < MAZE_HEIGHT - 2; y += 2) {
-		if (rnd2() == 1) maze[MAZE_WIDTH - 2][y] = Cell::EMPTY;
+		if (rnd(0, 1) == 1) maze[MAZE_WIDTH - 2][y] = Cell::EMPTY;
 	}
 
 	maze[1][0] = Cell::EXIT;
