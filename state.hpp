@@ -5,7 +5,13 @@
 enum Screen {
 	INTRO,
 	MAZE,
-	MAN
+	MAN,
+};
+
+enum Object {
+	NONE,
+	GOOD,
+	BAD,
 };
 
 class State {
@@ -15,6 +21,8 @@ public:
 	Screen screen;
 	int subscreen;
 
+	Object map = Object::NONE;
+	Object pass = Object::GOOD;
 	int player_x, player_y;
 	int direction;
 

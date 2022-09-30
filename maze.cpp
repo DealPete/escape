@@ -107,7 +107,9 @@ void Maze::init() {
 	maze[1][0] = Cell::EXIT;
 }
 
-void Maze::draw(int x, int y, int direction) {
+void Maze::draw(int x, int y, int direction, int MAZE_VIEW_WIDTH) {
+	int MAZE_VIEW_HEIGHT = MAIN_WINDOW_HEIGHT - TEXT_VIEW_HEIGHT;
+
 	sf::Vector2f center(MAZE_VIEW_WIDTH / 2.f, MAZE_VIEW_HEIGHT / 2.f);
 
 	Architect::draw_triangle(

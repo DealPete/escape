@@ -12,12 +12,9 @@ State state;
 int main()
 {
 	auto main_mode = sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
-	auto map_mode = sf::VideoMode(MAP_WINDOW_WIDTH, MAP_WINDOW_HEIGHT);
 	
 	sf::RenderWindow main_window(main_mode, "Escape!");
-	sf::RenderWindow map_window;
 	main_window.setVerticalSyncEnabled(true);
-	map_window.setVerticalSyncEnabled(true);
 
 	Architect::init(main_window);
 	Painter::init(main_window);
@@ -41,11 +38,13 @@ int main()
 					if (state.subscreen == 2) {
 						state.screen = Screen::MAZE;
 						state.subscreen = 0;
-						//state.map_open = true;
-						//map_window.create(map_mode, "Map");
 					}
 				}
 				else if (state.screen == Screen::MAZE) {
+					if (event.key.code == sf::Keyboard::Key::M) {
+						state.map_open = !state.map_open;
+					}
+
 					if (state.move_player(event.key)) {
 						if (rnd(1, 10) == 1) {
 							state.screen = Screen::MAN;
@@ -54,19 +53,6 @@ int main()
 					}
 				}
 			}
-		}
-
-		while (map_window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed) {
-				map_window.close();
-			}
-		}
-
-		if (state.map_open) {
-			map_window.clear();
-			draw_map(map_window, state.maze);
-			map_window.display();
 		}
 
 		main_window.clear();

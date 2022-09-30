@@ -17,12 +17,11 @@ const sf::Color WHITE = sf::Color(255, 255, 255);        // COLOR = 15
 
 const int MAIN_WINDOW_WIDTH = 2048;
 const int MAIN_WINDOW_HEIGHT = 1080;
-const int MAP_WINDOW_WIDTH = 1000;
-const int MAP_WINDOW_HEIGHT = 520;
-const int MAZE_VIEW_WIDTH = MAIN_WINDOW_WIDTH;
-const int MAZE_VIEW_HEIGHT = MAIN_WINDOW_HEIGHT - 200;
+const int TEXT_VIEW_HEIGHT = 200;
 const int MAN_WIDTH = 1280;
 const int MAN_HEIGHT = 960;
+const int MAP_VIEW_WIDTH = MAIN_WINDOW_HEIGHT - TEXT_VIEW_HEIGHT;
+const int MAP_VIEW_HEIGHT = MAP_VIEW_WIDTH;
 
 class Architect {
 private:
@@ -49,5 +48,4 @@ public:
 	void draw(int x, int y);
 };
 
-void draw(sf::RenderWindow &window, State state);
-void draw_map(sf::RenderWindow &window, Maze maze);
+void draw(sf::RenderWindow &window, State &state);

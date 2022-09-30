@@ -20,5 +20,5 @@ public:
 	}
 
 	void init();
-	void draw(int x, int y, int direction);
+	void draw(int x, int y, int direction, int maze_view_width);
 };
